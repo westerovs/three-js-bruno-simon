@@ -1,0 +1,22 @@
+// добавить подсказку по осям
+const axesHelper = new THREE.AxesHelper()
+scene.add(axesHelper)
+
+// create cub куб
+const cub2 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0xfff444 })
+)
+
+// create group
+const group = new THREE.Group()
+
+// rotation
+mesh.rotation.reorder('YXZ') - не понятно что делает. Будто меняет местами оси при перевороте
+mesh.rotation.set(Math.PI * 0.25, Math.PI * 0.25, 0)
+
+camera.lookAt(…)
+- показать объект посередине сцены
+Экземпляры Object3D имеют представление о методе camera.lookAt(…),
+который поворачивает объект так, чтобы его -z был обращен к указанной вами цели
+Целью должен быть Вектор3
