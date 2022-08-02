@@ -14,12 +14,18 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 // ---------------- the second way ----------------
 const textureLoader = new THREE.TextureLoader()
-// we can send 3 functions after the path
+// we can send 3 functions after the path, or we can used loadingManager (see 30:00)
 const texture = textureLoader.load('./images/cover.png',
   () => console.log('olLoad'),
   () => console.log('olProgress'),
   () => console.log('olError')
 )
+
+texture.repeat.set(2, 2)
+texture.generateMipmaps = false
+texture.wrapS = THREE.RepeatWrapping
+texture.wrapT = THREE.RepeatWrapping
+texture.magFilter = THREE.NearestFilter
 
 // we can upload multiple textures
 // const texture = textureLoader.load('./images/cover1.png')
