@@ -339,7 +339,7 @@ const initSignals = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   })
 }
-// initSignals()
+initSignals()
 
 const initGame = () => {
   tick()
