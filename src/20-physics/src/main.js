@@ -7,12 +7,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 /**
  * Debug
  */
-const gui         = new dat.GUI()
+const gui = new dat.GUI()
 const debugObject = {}
 
 debugObject.createSphere = () => {
   createSphere(
-    Math.random() * 0.5,
+    Math.random() * 1.1,
     {
       x: (Math.random() - 0.5) * 3,
       y: 3,
@@ -25,7 +25,7 @@ gui.add(debugObject, 'createSphere')
 
 debugObject.createBox = () => {
   createBox(
-    Math.random(),
+    Math.random() * 2,
     Math.random(),
     Math.random(),
     {
@@ -50,18 +50,13 @@ debugObject.reset = () => {
 }
 gui.add(debugObject, 'reset')
 
-/**
- * Base
- */
-  // Canvas
-const canvas = document.querySelector('canvas.webgl')
 
+// Canvas
+const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-/**
- * Sounds
- */
+// Sounds
 const hitSound = new Audio('./static/sounds/hit.mp3')
 
 const playHitSound = (collision) => {
@@ -74,10 +69,12 @@ const playHitSound = (collision) => {
   }
 }
 
-/**
- * Textures
- */
+// * ===================== Textures
 const textureLoader     = new THREE.TextureLoader()
+const jokerTexture = textureLoader.load('./static/eve.jpg')
+const mariaTexture = textureLoader.load('./static/maria.jpg')
+const spaceTexture = textureLoader.load('./static/space.jpg')
+
 const cubeTextureLoader = new THREE.CubeTextureLoader()
 
 const environmentMapTexture = cubeTextureLoader.load([
@@ -127,12 +124,14 @@ const sphereGeometry = new THREE.SphereBufferGeometry(1, 20, 20)
 const sphereMaterial = new THREE.MeshStandardMaterial({
   metalness: 0.3,
   roughness: 0.4,
-  envMap   : environmentMapTexture
+  envMap   : environmentMapTexture,
+  map: jokerTexture,
 })
+
 
 const createSphere = (radius, position) => {
   // Three.js mesh
-  const mesh      = new THREE.Mesh(sphereGeometry, sphereMaterial)
+  const mesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
   mesh.castShadow = true
   mesh.scale.set(radius, radius, radius)
   mesh.position.copy(position)
@@ -160,7 +159,8 @@ const boxGeometry = new THREE.BoxBufferGeometry(1, 1, 1)
 const boxMaterial = new THREE.MeshStandardMaterial({
   metalness: 0.3,
   roughness: 0.4,
-  envMap   : environmentMapTexture
+  envMap   : environmentMapTexture,
+  map: mariaTexture,
 })
 const createBox   = (width, height, depth, position) => {
   // Three.js mesh
@@ -198,7 +198,8 @@ const floor         = new THREE.Mesh(
     color    : '#777777',
     metalness: 0.3,
     roughness: 0.4,
-    envMap   : environmentMapTexture
+    envMap   : environmentMapTexture,
+    map: spaceTexture,
   })
 )
 floor.receiveShadow = true
