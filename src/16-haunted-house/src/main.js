@@ -11,9 +11,7 @@ const sizes = {
   height: window.innerHeight,
 }
 
-// ======================================================
 // ======================= Textures =====================
-// ======================================================
 const createTextures = () => {
   const textureLoader = new THREE.TextureLoader()
 
@@ -56,10 +54,8 @@ const createTextures = () => {
 }
 const textures = createTextures()
 
-// ======================================================
-// ======================= OBJECTS ======================
-// ======================================================
 
+// ======================= OBJECTS ======================
 // ======================= House
 const createHouseContainer = () => {
   //  container
@@ -172,6 +168,7 @@ createDoor()
 //   // Add to the graves container
 //   graves.add(grave)
 // }
+
 
 // ======================= Floor
 const createFloor = () => {
